@@ -1,13 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { getRestaurants, postRestaurant } from "../api/restaurants";
 
 export default function useRestaurants() {
   const [restaurants, setRestaurants] = useState([]);
 
-  const fetchRestaurants = async () => {
+  const fetchRestaurants = useCallback(async () => {
     const data = await getRestaurants();
+    console.log(data);
     setRestaurants(data);
-  };
+  }, []);
 
   const addRestaurant = async (restaurant) => {
     const newRestaurant = {
@@ -25,7 +26,7 @@ export default function useRestaurants() {
 
   useEffect(() => {
     fetchRestaurants();
-  }, []);
+  }, [fetchRestaurants]);
 
   return { restaurants, onAddRestaurant };
 }
