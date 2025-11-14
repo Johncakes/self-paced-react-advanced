@@ -12,7 +12,6 @@ const Button = styled.button`
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
-  text-caption;
 
   &:last-child {
     margin-right: 0;
@@ -29,8 +28,8 @@ const Button = styled.button`
     background: var(--primary-color);
     color: var(--grey-100);
   `}
-
 `;
+
 export default function ModalButton({
   children,
   variant = "primary",
@@ -38,7 +37,7 @@ export default function ModalButton({
 }) {
   return (
     <ButtonContainer>
-      <Button variant={variant} {...props}>
+      <Button variant={variant} {...props} className="text-caption">
         {children}
       </Button>
     </ButtonContainer>

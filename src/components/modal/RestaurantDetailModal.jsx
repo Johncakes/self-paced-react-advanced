@@ -6,17 +6,11 @@ const ModalRestaurantInfo = styled.div`
   margin-bottom: 24px;
 `;
 
-const ModalResturantInfoDetail = styled.p`
-  text-body;
-  `;
-
 export default function RestaurantDetailModal({ restaurantInfo, closeModal }) {
   return (
     <Modal title={restaurantInfo?.name} onBackdropClick={closeModal}>
       <ModalRestaurantInfo>
-        <ModalResturantInfoDetail>
-          {restaurantInfo?.description}
-        </ModalResturantInfoDetail>
+        <p className="text-body">{restaurantInfo?.description}</p>
       </ModalRestaurantInfo>
       <ModalButton onClick={closeModal} autoFocus>
         닫기
