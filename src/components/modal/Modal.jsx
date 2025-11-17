@@ -1,6 +1,33 @@
 import { useRef } from "react";
 import styled from "styled-components";
 
+export default function Modal({ title, children, onBackdropClick }) {
+  const containerRef = useRef(null);
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Escape") {
+      event.stopPropagation();
+      onBackdropClick();
+    }
+  };
+
+  return (
+    <ModalContainer open={true}>
+      <ModalBackDrop onClick={onBackdropClick} />
+      <ModalContent
+        ref={containerRef}
+        role="dialog"
+        aria-modal="true"
+        tabIndex={-1}
+        onKeyDown={handleKeyDown}
+      >
+        <ModalTitle>{title}</ModalTitle>
+        {children}
+      </ModalContent>
+    </ModalContainer>
+  );
+}
+
 const ModalContainer = styled.div`
   ${(props) =>
     props.open
@@ -36,30 +63,3 @@ const ModalContent = styled.div`
 const ModalTitle = styled.h2`
   margin-bottom: 36px;
 `;
-
-export default function Modal({ title, children, onBackdropClick }) {
-  const containerRef = useRef(null);
-
-  const handleKeyDown = (event) => {
-    if (event.key === "Escape") {
-      event.stopPropagation();
-      onBackdropClick();
-    }
-  };
-
-  return (
-    <ModalContainer open={true}>
-      <ModalBackDrop onClick={onBackdropClick} />
-      <ModalContent
-        ref={containerRef}
-        role="dialog"
-        aria-modal="true"
-        tabIndex={-1}
-        onKeyDown={handleKeyDown}
-      >
-        <ModalTitle>{title}</ModalTitle>
-        {children}
-      </ModalContent>
-    </ModalContainer>
-  );
-}

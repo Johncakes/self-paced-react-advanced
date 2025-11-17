@@ -2,10 +2,6 @@ import Modal from "./Modal";
 import styled from "styled-components";
 import ModalButton from "../ModalButton";
 
-const ModalRestaurantInfo = styled.div`
-  margin-bottom: 24px;
-`;
-
 export default function RestaurantDetailModal({ restaurantInfo, closeModal }) {
   return (
     <Modal title={restaurantInfo?.name} onBackdropClick={closeModal}>
@@ -18,3 +14,7 @@ export default function RestaurantDetailModal({ restaurantInfo, closeModal }) {
     </Modal>
   );
 }
+
+const ModalRestaurantInfo = styled.div`
+  margin-bottom: 24px;
+`;

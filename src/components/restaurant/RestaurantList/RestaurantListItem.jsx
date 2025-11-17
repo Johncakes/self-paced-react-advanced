@@ -1,5 +1,23 @@
 import styled from "styled-components";
 
+export default function RestaurantListItem({ restaurant, icon, onClick }) {
+  return (
+    <RestaurantContainer>
+      <RestaurantButton onClick={onClick}>
+        <RestaurantCategory>
+          <RestaurantCategoryIcon src={icon} alt={restaurant.category} />
+        </RestaurantCategory>
+        <RestaurantInfo>
+          <RestaurantName>{restaurant.name}</RestaurantName>
+          <RestaurantDescription>
+            {restaurant.description}
+          </RestaurantDescription>
+        </RestaurantInfo>
+      </RestaurantButton>
+    </RestaurantContainer>
+  );
+}
+
 const RestaurantContainer = styled.li`
   display: flex;
   align-items: flex-start;
@@ -55,21 +73,3 @@ const RestaurantDescription = styled.p`
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 `;
-
-export default function RestaurantListItem({ restaurant, icon, onClick }) {
-  return (
-    <RestaurantContainer>
-      <RestaurantButton onClick={onClick}>
-        <RestaurantCategory>
-          <RestaurantCategoryIcon src={icon} alt={restaurant.category} />
-        </RestaurantCategory>
-        <RestaurantInfo>
-          <RestaurantName>{restaurant.name}</RestaurantName>
-          <RestaurantDescription>
-            {restaurant.description}
-          </RestaurantDescription>
-        </RestaurantInfo>
-      </RestaurantButton>
-    </RestaurantContainer>
-  );
-}

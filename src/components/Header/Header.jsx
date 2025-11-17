@@ -1,6 +1,17 @@
 import addButton from "../../assets/add-button.png";
 import styled from "styled-components";
 
+export default function Header({ openModal }) {
+  return (
+    <HeaderContainer>
+      <HeaderTitle>점심 뭐 먹지</HeaderTitle>
+      <HeaderButton type="button" aria-label="음식점 추가" onClick={openModal}>
+        <HeaderButtonImage src={addButton} alt="" />
+      </HeaderButton>
+    </HeaderContainer>
+  );
+}
+
 const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
@@ -28,14 +39,3 @@ const HeaderButtonImage = styled.img`
   height: 40px;
   object-fit: contain;
 `;
-
-export default function Header({ openModal }) {
-  return (
-    <HeaderContainer>
-      <HeaderTitle>점심 뭐 먹지</HeaderTitle>
-      <HeaderButton type="button" aria-label="음식점 추가" onClick={openModal}>
-        <HeaderButtonImage src={addButton} alt="" />
-      </HeaderButton>
-    </HeaderContainer>
-  );
-}

@@ -4,53 +4,6 @@ import categories from "../../constants/category";
 import styled from "styled-components";
 import ModalButton from "../ModalButton";
 
-const ModalFormItem = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 36px;
-
-  label {
-    color: var(--grey-400);
-    font-size: 14px;
-  }
-
-  ${(props) =>
-    props.required &&
-    `
-      label::after {
-        padding-left: 4px;
-        color: var(--primary-color);
-        content: "*";
-      }
-    `}
-
-  .help-text {
-    color: var(--grey-300);
-  }
-
-  input,
-  textarea,
-  select {
-    padding: 8px;
-    margin: 6px 0;
-    border: 1px solid var(--grey-200);
-    border-radius: 8px;
-    font-size: 16px;
-  }
-
-  textarea {
-    resize: none;
-  }
-
-  select {
-    height: 44px;
-    padding: 8px;
-    border: 1px solid var(--grey-200);
-    border-radius: 8px;
-    color: var(--grey-300);
-  }
-`;
-
 export default function AddRestaurantModal({ closeModal, onAddRestaurant }) {
   const [restaurantInfo, setRestaurantInfo] = useState({
     category: "",
@@ -134,3 +87,50 @@ export default function AddRestaurantModal({ closeModal, onAddRestaurant }) {
     </Modal>
   );
 }
+
+const ModalFormItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 36px;
+
+  label {
+    color: var(--grey-400);
+    font-size: 14px;
+  }
+
+  ${(props) =>
+    props.required &&
+    `
+      label::after {
+        padding-left: 4px;
+        color: var(--primary-color);
+        content: "*";
+      }
+    `}
+
+  .help-text {
+    color: var(--grey-300);
+  }
+
+  input,
+  textarea,
+  select {
+    padding: 8px;
+    margin: 6px 0;
+    border: 1px solid var(--grey-200);
+    border-radius: 8px;
+    font-size: 16px;
+  }
+
+  textarea {
+    resize: none;
+  }
+
+  select {
+    height: 44px;
+    padding: 8px;
+    border: 1px solid var(--grey-200);
+    border-radius: 8px;
+    color: var(--grey-300);
+  }
+`;

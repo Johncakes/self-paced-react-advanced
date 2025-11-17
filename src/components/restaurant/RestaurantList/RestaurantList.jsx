@@ -2,14 +2,6 @@ import RestaurantListItem from "./RestaurantListItem";
 import getCategoryIcon from "../../../utils/getCategoryIcon";
 import styled from "styled-components";
 
-const ListContainer = styled.section`
-  display: flex;
-  flex-direction: column;
-
-  padding: 0 16px;
-  margin: 16px 0;
-`;
-
 export default function RestaurantList({
   filteredRestaurants,
   openModal,
@@ -35,3 +27,11 @@ export default function RestaurantList({
     </ListContainer>
   );
 }
+
+const ListContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+
+  padding: 0 16px;
+  margin: 16px 0;
+`;

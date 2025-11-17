@@ -1,5 +1,19 @@
 import styled from "styled-components";
 
+export default function ModalButton({
+  children,
+  variant = "primary",
+  ...props
+}) {
+  return (
+    <ButtonContainer>
+      <Button variant={variant} {...props} className="text-caption">
+        {children}
+      </Button>
+    </ButtonContainer>
+  );
+}
+
 const ButtonContainer = styled.div`
   display: flex;
 `;
@@ -29,17 +43,3 @@ const Button = styled.button`
     color: var(--grey-100);
   `}
 `;
-
-export default function ModalButton({
-  children,
-  variant = "primary",
-  ...props
-}) {
-  return (
-    <ButtonContainer>
-      <Button variant={variant} {...props} className="text-caption">
-        {children}
-      </Button>
-    </ButtonContainer>
-  );
-}
