@@ -4,9 +4,8 @@ import styled from "styled-components";
 import { useContext } from "react";
 import { AppContext } from "../../../contexts/AppContext.jsx";
 
-export default function RestaurantList() {
-  const { filteredRestaurants, openModal, setSelectedRestaurant } =
-    useContext(AppContext);
+export default function RestaurantList({ openModal, setSelectedRestaurant }) {
+  const { filteredRestaurants } = useContext(AppContext);
 
   const handleSelect = (restaurant) => {
     openModal("DETAIL_RESTAURANT");

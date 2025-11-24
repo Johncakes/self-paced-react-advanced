@@ -5,8 +5,8 @@ import categories from "../../constants/category";
 import styled from "styled-components";
 import ModalButton from "../ModalButton";
 
-export default function AddRestaurantModal() {
-  const { closeModal, onAddRestaurant } = useContext(AppContext);
+export default function AddRestaurantModal({ closeModal }) {
+  const { onAddRestaurant } = useContext(AppContext);
   const [restaurantInfo, setRestaurantInfo] = useState({
     category: "",
     name: "",
@@ -26,7 +26,7 @@ export default function AddRestaurantModal() {
   };
 
   return (
-    <Modal title="새로운 음식점">
+    <Modal title="새로운 음식점" onBackdropClick={closeModal}>
       <form method="post" onSubmit={handleSubmit}>
         <ModalFormItem>
           <label htmlFor="category" className="text-caption">
