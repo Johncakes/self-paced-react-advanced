@@ -1,11 +1,10 @@
 import RestaurantListItem from "./RestaurantListItem";
 import getCategoryIcon from "../../../utils/getCategoryIcon";
 import styled from "styled-components";
-import { useContext } from "react";
-import { AppContext } from "../../../contexts/AppContext.jsx";
+import useFilteredRestaurants from "../../../hooks/useFilteredRestaurants.js";
 
 export default function RestaurantList({ openModal, setSelectedRestaurant }) {
-  const { filteredRestaurants } = useContext(AppContext);
+  const filteredRestaurants = useFilteredRestaurants();
 
   const handleSelect = (restaurant) => {
     openModal("DETAIL_RESTAURANT");
