@@ -1,14 +1,13 @@
 import RestaurantListItem from "./RestaurantListItem";
 import getCategoryIcon from "../../../utils/getCategoryIcon";
 import styled from "styled-components";
+import useFilteredRestaurants from "../../../hooks/useFilteredRestaurants.js";
 
-export default function RestaurantList({
-  filteredRestaurants,
-  openModal,
-  setSelectedRestaurant,
-}) {
+export default function RestaurantList({ openModal, setSelectedRestaurant }) {
+  const filteredRestaurants = useFilteredRestaurants();
+
   const handleSelect = (restaurant) => {
-    openModal();
+    openModal("DETAIL_RESTAURANT");
     setSelectedRestaurant(restaurant);
   };
 

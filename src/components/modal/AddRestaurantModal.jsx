@@ -3,8 +3,10 @@ import Modal from "./Modal";
 import categories from "../../constants/category";
 import styled from "styled-components";
 import ModalButton from "../ModalButton";
+import { useRestaurantContext } from "../../hooks/useContexts.js";
 
-export default function AddRestaurantModal({ closeModal, onAddRestaurant }) {
+export default function AddRestaurantModal({ closeModal }) {
+  const { onAddRestaurant } = useRestaurantContext();
   const [restaurantInfo, setRestaurantInfo] = useState({
     category: "",
     name: "",

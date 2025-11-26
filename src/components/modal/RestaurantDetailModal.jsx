@@ -2,11 +2,14 @@ import Modal from "./Modal";
 import styled from "styled-components";
 import ModalButton from "../ModalButton";
 
-export default function RestaurantDetailModal({ restaurantInfo, closeModal }) {
+export default function RestaurantDetailModal({
+  closeModal,
+  selectedRestaurant,
+}) {
   return (
-    <Modal title={restaurantInfo?.name} onBackdropClick={closeModal}>
+    <Modal title={selectedRestaurant?.name} onBackdropClick={closeModal}>
       <ModalRestaurantInfo>
-        <p className="text-body">{restaurantInfo?.description}</p>
+        <p className="text-body">{selectedRestaurant?.description}</p>
       </ModalRestaurantInfo>
       <ModalButton onClick={closeModal} autoFocus>
         닫기

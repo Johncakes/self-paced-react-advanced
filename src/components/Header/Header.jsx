@@ -5,7 +5,11 @@ export default function Header({ openModal }) {
   return (
     <HeaderContainer>
       <HeaderTitle>점심 뭐 먹지</HeaderTitle>
-      <HeaderButton type="button" aria-label="음식점 추가" onClick={openModal}>
+      <HeaderButton
+        type="button"
+        aria-label="음식점 추가"
+        onClick={() => openModal("ADD_RESTAURANT")}
+      >
         <HeaderButtonImage src={addButton} alt="" />
       </HeaderButton>
     </HeaderContainer>
