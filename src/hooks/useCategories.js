@@ -1,14 +1,16 @@
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { useShallow } from "zustand/shallow";
+import { useCategoryStore } from "../stores/useCategoryStore.js";
 
-export const useCategories = create(
-  persist(
-    (set) => ({
-      selectedCategory: "전체",
-      setCategory: (category) => set({ selectedCategory: category }),
-    }),
-    {
-      name: "categories",
-    }
-  )
-);
+export default function useCategories() {
+  const { selectedCategory, setCategory } = useCategoryStore(
+    useShallow((state) => ({
+      selectedCategory: state.selectedCategory,
+      setCategory: state.actions.setCategory,
+    }))
+  );
+
+  return {
+    selectedCategory,
+    setCategory,
+  };
+}

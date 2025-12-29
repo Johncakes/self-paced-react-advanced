@@ -1,23 +1,23 @@
-import { getRestaurants, postRestaurant } from "../api/restaurants";
-import { create } from "zustand";
+import { useShallow } from "zustand/shallow";
+import { useRestaurantStore } from "../stores/useRestaurantStore";
 
-export const useRestaurants = create((set, get) => ({
-  restaurants: [],
-  fetchRestaurants: async () => {
-    const data = await getRestaurants();
-    set({ restaurants: data });
-  },
+export default function useRestaurants() {
+  const { restaurants, fetch, add } = useRestaurantStore(
+    useShallow((state) => ({
+      restaurants: state.restaurants,
+      fetch: state.actions.fetch.fetchRestaurants,
+      add: state.actions.add.addRestaurant,
+    }))
+  );
 
-  addRestaurant: async (restaurant) => {
-    const newRestaurant = {
-      ...restaurant,
-      id: Date.now(),
-    };
-    await postRestaurant(newRestaurant);
-  },
+  const onAddRestaurant = async (restaurant) => {
+    await add(restaurant);
+    await fetch();
+  };
 
-  onAddRestaurant: async (restaurant) => {
-    await get().addRestaurant(restaurant);
-    await get().fetchRestaurants();
-  },
-}));
+  return {
+    restaurants,
+    fetchRestaurants: fetch,
+    onAddRestaurant,
+  };
+}

@@ -6,7 +6,7 @@ import RestaurantList from "./components/restaurant/RestaurantList/RestaurantLis
 import RestaurantDetailModal from "./components/modal/RestaurantDetailModal";
 import AddRestaurantModal from "./components/modal/AddRestaurantModal";
 import useModal from "./hooks/useModal";
-import { useRestaurants } from "./hooks/useRestaurants.js";
+import useRestaurants from "./hooks/useRestaurants.js";
 
 function App() {
   const {
@@ -16,7 +16,7 @@ function App() {
     close: closeModal,
   } = useModal();
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
-  const fetchRestaurants = useRestaurants((state) => state.fetchRestaurants);
+  const { fetchRestaurants } = useRestaurants();
 
   useEffect(() => {
     fetchRestaurants();

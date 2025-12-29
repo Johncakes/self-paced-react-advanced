@@ -1,11 +1,12 @@
 import { useMemo } from "react";
 import getFilteredRestaurant from "../utils/getFilteredRestaurant.js";
-import { useRestaurants } from "./useRestaurants.js";
-import { useCategories } from "./useCategories.js";
+// import { useRestaurants } from "../stores/useRestaurantStore.js";
+import useRestaurants from "./useRestaurants.js";
+import { useCategoryStore } from "../stores/useCategoryStore.js";
 
 export default function useFilteredRestaurants() {
-  const selectedCategory = useCategories((state) => state.selectedCategory);
-  const restaurants = useRestaurants((state) => state.restaurants);
+  const selectedCategory = useCategoryStore((state) => state.selectedCategory);
+  const { restaurants } = useRestaurants();
 
   const filtered = useMemo(
     () => getFilteredRestaurant(restaurants, selectedCategory),
