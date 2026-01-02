@@ -7,6 +7,7 @@ export default function RestaurantList({ openModal, setSelectedRestaurant }) {
   const filteredRestaurants = useFilteredRestaurants();
 
   const handleSelect = (restaurant) => {
+    if (restaurant.isPending) return; // Disable click for pending items
     openModal("DETAIL_RESTAURANT");
     setSelectedRestaurant(restaurant);
   };
@@ -20,6 +21,7 @@ export default function RestaurantList({ openModal, setSelectedRestaurant }) {
             restaurant={restaurant}
             icon={getCategoryIcon(restaurant.category)}
             onClick={() => handleSelect(restaurant)}
+            style={restaurant.isPending ? { opacity: 0.6, cursor: "wait" } : {}}
           />
         ))}
       </ul>

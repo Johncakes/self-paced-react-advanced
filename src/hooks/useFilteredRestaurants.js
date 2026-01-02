@@ -1,6 +1,5 @@
 import { useMemo } from "react";
 import getFilteredRestaurant from "../utils/getFilteredRestaurant.js";
-// import { useRestaurants } from "../stores/useRestaurantStore.js";
 import useRestaurants from "./useRestaurants.js";
 import { useCategoryStore } from "../stores/useCategoryStore.js";
 

@@ -1,23 +1,21 @@
-import { useShallow } from "zustand/shallow";
-import { useRestaurantStore } from "../stores/useRestaurantStore";
+import {
+  useRestaurantQuery,
+  useAddRestaurantMutation,
+} from "../query/useRestaurantQuery";
 
 export default function useRestaurants() {
-  const { restaurants, fetch, add } = useRestaurantStore(
-    useShallow((state) => ({
-      restaurants: state.restaurants,
-      fetch: state.actions.fetch.fetchRestaurants,
-      add: state.actions.add.addRestaurant,
-    }))
-  );
+  const restaurants = useRestaurantQuery().data || [];
+  const addRestaurantMutation = useAddRestaurantMutation();
 
-  const onAddRestaurant = async (restaurant) => {
-    await add(restaurant);
-    await fetch();
+  const onAddRestaurant = (restaurant) => {
+    return addRestaurantMutation.mutateAsync({
+      ...restaurant,
+      id: Date.now(),
+    });
   };
 
   return {
     restaurants,
-    fetchRestaurants: fetch,
     onAddRestaurant,
   };
 }
