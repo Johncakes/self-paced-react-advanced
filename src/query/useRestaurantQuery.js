@@ -18,5 +18,6 @@ export function useAddRestaurantMutation() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: RESTAURANTS_QUERY_KEY });
     },
+    mutationKey: ["addRestaurant"],
   });
 }

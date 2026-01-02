@@ -3,11 +3,10 @@ import Modal from "./Modal";
 import categories from "../../constants/category";
 import styled from "styled-components";
 import ModalButton from "../ModalButton";
-// import { useRestaurants } from "../../hooks/useRestaurants.js";
-import useRestaurants from "../../hooks/useRestaurants.js";
+import useRestaurantActions from "../../hooks/useRestaurantActions.js";
 
 export default function AddRestaurantModal({ closeModal }) {
-  const { onAddRestaurant } = useRestaurants();
+  const { addRestaurant } = useRestaurantActions();
 
   const [restaurantInfo, setRestaurantInfo] = useState({
     category: "",
@@ -23,7 +22,7 @@ export default function AddRestaurantModal({ closeModal }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    await onAddRestaurant(restaurantInfo);
+    await addRestaurant(restaurantInfo);
     closeModal();
   };
 

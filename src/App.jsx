@@ -14,7 +14,6 @@ function App() {
     open: openModal,
     close: closeModal,
   } = useModal();
-
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
 
   return (
