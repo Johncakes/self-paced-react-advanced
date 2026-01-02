@@ -22,7 +22,7 @@ export default function AddRestaurantModal({ closeModal }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    await onAddRestaurant(restaurantInfo);
+    onAddRestaurant(restaurantInfo);
     closeModal();
   };
 

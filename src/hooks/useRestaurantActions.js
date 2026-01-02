@@ -2,13 +2,14 @@ import { useAddRestaurantMutation } from "../query/useRestaurantQuery";
 
 export default function useRestaurantActions() {
   const {
-    mutateAsync: addRestaurant,
+    mutate: addRestaurantMutation,
     isPending,
     error,
+    variables,
   } = useAddRestaurantMutation();
 
   const onAddRestaurant = (restaurant) => {
-    return addRestaurant({
+    return addRestaurantMutation({
       ...restaurant,
       id: Date.now(),
     });
@@ -16,7 +17,8 @@ export default function useRestaurantActions() {
 
   return {
     onAddRestaurant,
-    isAdding: isPending,
-    addError: error,
+    isPending,
+    error,
+    variables,
   };
 }

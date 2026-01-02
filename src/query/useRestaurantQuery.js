@@ -15,7 +15,28 @@ export function useAddRestaurantMutation() {
 
   return useMutation({
     mutationFn: postRestaurant,
-    onSuccess: () => {
+
+    onMutate: async (newRestaurant) => {
+      await queryClient.cancelQueries({ queryKey: RESTAURANTS_QUERY_KEY });
+
+      const previousRestaurants = queryClient.getQueryData(
+        RESTAURANTS_QUERY_KEY
+      );
+
+      queryClient.setQueryData(RESTAURANTS_QUERY_KEY, (old) => [
+        ...old,
+        newRestaurant,
+      ]);
+
+      return { previousRestaurants };
+    },
+    onError: (err, newRestaurant, context) => {
+      queryClient.setQueryData(
+        RESTAURANTS_QUERY_KEY,
+        context.previousRestaurants
+      );
+    },
+    onSettled: () => {
       queryClient.invalidateQueries({ queryKey: RESTAURANTS_QUERY_KEY });
     },
     mutationKey: ["addRestaurant"],
