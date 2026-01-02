@@ -15,7 +15,7 @@ export default function useRestaurantActions() {
   };
 
   return {
-    addRestaurant: onAddRestaurant,
+    onAddRestaurant,
     isAdding: isPending,
     addError: error,
   };

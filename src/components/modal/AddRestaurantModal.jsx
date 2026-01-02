@@ -6,7 +6,7 @@ import ModalButton from "../ModalButton";
 import useRestaurantActions from "../../hooks/useRestaurantActions.js";
 
 export default function AddRestaurantModal({ closeModal }) {
-  const { addRestaurant } = useRestaurantActions();
+  const { onAddRestaurant } = useRestaurantActions();
 
   const [restaurantInfo, setRestaurantInfo] = useState({
     category: "",
@@ -22,7 +22,7 @@ export default function AddRestaurantModal({ closeModal }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    await addRestaurant(restaurantInfo);
+    await onAddRestaurant(restaurantInfo);
     closeModal();
   };
 
