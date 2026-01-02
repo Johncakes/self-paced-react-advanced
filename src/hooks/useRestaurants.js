@@ -1,31 +1,23 @@
-import { useState, useEffect, useCallback } from "react";
-import { getRestaurants, postRestaurant } from "../api/restaurants";
+import { useShallow } from "zustand/shallow";
+import { useRestaurantStore } from "../stores/useRestaurantStore";
 
 export default function useRestaurants() {
-  const [restaurants, setRestaurants] = useState([]);
+  const { restaurants, fetch, add } = useRestaurantStore(
+    useShallow((state) => ({
+      restaurants: state.restaurants,
+      fetch: state.actions.fetch.fetchRestaurants,
+      add: state.actions.add.addRestaurant,
+    }))
+  );
 
-  const fetchRestaurants = useCallback(async () => {
-    const data = await getRestaurants();
-    setRestaurants(data);
-  }, []);
-
-  const addRestaurant = async (restaurant) => {
-    const newRestaurant = {
-      ...restaurant,
-      id: Date.now(),
-    };
-
-    await postRestaurant(newRestaurant);
+  const onAddRestaurant = async (restaurant) => {
+    await add(restaurant);
+    await fetch();
   };
 
-  const onAddRestaurant = async (restaurants) => {
-    await addRestaurant(restaurants);
-    await fetchRestaurants();
+  return {
+    restaurants,
+    fetchRestaurants: fetch,
+    onAddRestaurant,
   };
-
-  useEffect(() => {
-    fetchRestaurants();
-  }, [fetchRestaurants]);
-
-  return { restaurants, onAddRestaurant };
 }

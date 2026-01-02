@@ -1,9 +1,10 @@
 import categories from "../../../constants/category";
 import styled from "styled-components";
-import { useCategoryContext } from "../../../hooks/useContexts.js";
+import useCategories from "../../../hooks/useCategories";
 
 export default function RestaurantCategoryFilter() {
-  const { selectedCategory, setCategory } = useCategoryContext();
+  const { selectedCategory, setCategory } = useCategories();
+
   return (
     <FilterContainer>
       <FilterSelect
