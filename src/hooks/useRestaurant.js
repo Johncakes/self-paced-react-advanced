@@ -1,6 +1,7 @@
 import { useAddRestaurantMutation } from "../query/useRestaurantQuery";
+import { useRestaurantQuery } from "../query/useRestaurantQuery";
 
-export default function useRestaurantActions() {
+export function useAddRestaurant() {
   const {
     mutate: addRestaurantMutation,
     isPending,
@@ -20,5 +21,15 @@ export default function useRestaurantActions() {
     isPending,
     error,
     variables,
+  };
+}
+
+export function useFetchRestaurants() {
+  const { data: restaurants = [], isLoading, error } = useRestaurantQuery();
+
+  return {
+    restaurants,
+    isLoading,
+    error,
   };
 }
